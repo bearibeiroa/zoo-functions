@@ -33,7 +33,8 @@ function createEmployee(personalInfo, associatedWith) {
 }
 
 function isManager(id) {
-  // seu código aqui
+  const manager = employees.map((gerente) => gerente.managers);
+  return manager.some((gerent) => gerent.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers, responsibleFor) {
