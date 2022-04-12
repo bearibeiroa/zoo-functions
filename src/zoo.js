@@ -59,9 +59,45 @@ function calculateEntry(entrants = 0) {
   return adultEntryPrice + childEntryPrice + seniorEntryPrice;
 }
 
-function getAnimalMap(day) {
-  // seu código aqui
+function getAnimalMap(options) {
+// Passo 1 -> fazer uma função para cada possibilidade de retorno e chamar as func aqui dentro a partir das condicionais. forUndefinedParam()
+// Func1 -> Sem parâmetro retorna {região: [animais]}. Fazer com reduce
+// Func2 -> includeNames:true, retorna nome dos animais
 }
+
+// Func para condição 1.
+function findAnimal(currLocal) {
+  const animal = species.reduce((accAnimal, currAnimal) => {
+    if (currAnimal.location === currLocal.location) {
+      accAnimal.push(currAnimal.name);
+    }
+    return accAnimal;
+  }, []);
+  return animal;
+}
+
+function includeNames() {
+  let arrayResult = [];
+  const animal = species.reduce((accAnimal, currAnimal) => {
+    const qlrCoisa = accAnimal;
+    currAnimal.residents.forEach((resident) => {
+      arrayResult = resident;
+      qlrCoisa[currAnimal.name] = arrayResult;
+    });
+    return qlrCoisa;
+  }, {});
+  return animal;
+}
+
+function findRegion() {
+  const reduceDasSpecies = species.reduce((accLocal, currLocal) => {
+    const objLocation = accLocal;
+    objLocation[currLocal.location] = includeNames(currLocal);
+    return objLocation;
+  }, {});
+  return reduceDasSpecies;
+}
+console.log(findAnimal());
 
 function getSchedule(dayName) {
   const weekDays = ['Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday', 'Monday'];
